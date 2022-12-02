@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>주문 목록</title>
+    <link rel="stylesheet" href="/table.css">
+</head>
+<body>
+<form th:replace="/fix/header.html :: search"></form>
+<table border="1">
+    <tr>
+        <th>주문 번호</th>
+        <th>주문 날짜</th>
+        <th>상품 번호</th>
+        <th>상품 이름</th>
+        <th>상품 가격</th>
+        <th>상품 개수</th>
+        <th>주문 가격</th>
+
+    </tr>
+    <th:block th:each="order:${orders}">
+        <tr>
+            <td th:text="${order.orderId}"></td>
+            <td th:text="${order.orderDate}"></td>
+            <td th:text="${order.itemNumber}"></td>
+            <td th:text="${order.itemName}"></td>
+            <td th:text="${order.itemPrice}"></td>
+            <td th:text="${order.itemCount}"></td>
+            <td th:text="${order.orderPrice}"></td>
+        </tr>
+    </th:block>
+</table>
+<form th:action="@{/order/cancel}" name="payForm" method="post">
+    <table id="order-list" border="1">
+        <tr>
+            <th>구분</th>
+            <th>주문 번호</th>
+        </tr>
+    </table>
+    <input type="submit" value="취소하기">
+</form>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/order.js"></script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
